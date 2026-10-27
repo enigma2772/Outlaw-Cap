@@ -1,0 +1,974 @@
+<!DOCTYPE html>
+<html lang="es" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OUTLAW CAP | High-End Streetwear VZLA</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700&family=Montserrat:ital,wght@0,600;0,800;1,900&family=Syne:wght@700;800&family=UnifrakturMaguntia&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        drip: {
+                            bg: '#08080a',
+                            card: '#0f0f14',
+                            surface: '#14141c',
+                            border: '#222230',
+                            purple: '#a855f7',
+                            purpleGlow: '#9333ea',
+                            cyan: '#00ffcc',
+                            textMuted: '#94a3b8'
+                        }
+                    },
+                    fontFamily: {
+                        syne: ['Syne', 'sans-serif'],
+                        gothic: ['UnifrakturMaguntia', 'cursive'],
+                        bebas: ['Bebas Neue', 'sans-serif'],
+                        montserrat: ['Montserrat', 'sans-serif'],
+                        sans: ['Inter', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Responsive Title Sizing with Clamp */
+        .hero-title-clamp {
+            font-size: clamp(2rem, 5vw, 4.2rem);
+            line-height: 1.08;
+        }
+
+        .hero-drip-clamp {
+            font-size: clamp(2.2rem, 6vw, 4.8rem);
+        }
+
+        .nav-logo-clamp {
+            font-size: clamp(1.15rem, 2.5vw, 1.45rem);
+        }
+
+        /* Scrollbar Styling */
+        ::-webkit-scrollbar {
+            width: 7px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #08080a;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(180deg, #a855f7, #00ffcc);
+            border-radius: 4px;
+        }
+
+        /* Ambient Cards & Glass Effect */
+        .drip-glass {
+            background: rgba(15, 15, 20, 0.88);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(168, 85, 247, 0.2);
+        }
+
+        .drip-card {
+            background: linear-gradient(165deg, rgba(20, 20, 28, 0.95) 0%, rgba(12, 12, 16, 0.98) 100%);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
+        }
+
+        .drip-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: inherit;
+            padding: 1px;
+            background: linear-gradient(135deg, rgba(168, 85, 247, 0.5), transparent, rgba(0, 255, 204, 0.3));
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            opacity: 0.25;
+            transition: opacity 0.35s ease;
+        }
+
+        .drip-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 16px 35px -10px rgba(168, 85, 247, 0.22), 0 0 20px -5px rgba(0, 255, 204, 0.12);
+        }
+
+        .drip-card:hover::before {
+            opacity: 1;
+        }
+
+        /* Text Gradients */
+        .text-drip-gradient {
+            background: linear-gradient(135deg, #ffffff 15%, #a855f7 65%, #00ffcc 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Buttons & Badges */
+        .btn-drip-primary {
+            background: linear-gradient(135deg, #a855f7 0%, #7e22ce 100%);
+            color: #ffffff;
+            font-weight: 800;
+            letter-spacing: 0.08em;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 18px rgba(168, 85, 247, 0.35);
+        }
+
+        .btn-drip-primary:hover {
+            background: linear-gradient(135deg, #c084fc 0%, #9333ea 100%);
+            box-shadow: 0 6px 24px rgba(168, 85, 247, 0.55), 0 0 12px rgba(0, 255, 204, 0.35);
+            transform: translateY(-2px);
+        }
+
+        .badge-original {
+            background: rgba(0, 255, 204, 0.12);
+            border: 1px solid rgba(0, 255, 204, 0.5);
+            color: #00ffcc;
+        }
+
+        .badge-aaa {
+            background: rgba(168, 85, 247, 0.15);
+            border: 1px solid rgba(168, 85, 247, 0.5);
+            color: #c084fc;
+        }
+
+        .drip-divider {
+            background-image: radial-gradient(circle at 50% 0, rgba(168, 85, 247, 0.12), transparent 70%);
+        }
+    </style>
+</head>
+<body class="bg-drip-bg text-slate-200 font-sans antialiased min-h-screen flex flex-col selection:bg-drip-purple selection:text-white">
+
+    <!-- BANNER SUPERIOR -->
+    <div id="top-banner" class="bg-gradient-to-r from-black via-drip-surface to-black border-b border-drip-purple/30 text-[11px] py-2 px-4 text-center font-montserrat font-extrabold tracking-widest text-slate-300 uppercase flex justify-center items-center gap-3">
+        <span class="w-1.5 h-1.5 rounded-full bg-drip-cyan animate-pulse"></span>
+        <span id="banner-text">🔥 ENVÍOS ASEGURADOS A TODA VENEZUELA | DRIP STREETWEAR 2026 🔥</span>
+        <span class="w-1.5 h-1.5 rounded-full bg-drip-purple animate-pulse"></span>
+    </div>
+
+    <!-- NAVBAR -->
+    <header class="sticky top-0 z-40 drip-glass">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16 sm:h-20">
+                <!-- LOGO EQUILIBRADO -->
+                <div class="flex items-center gap-2.5 cursor-pointer" onclick="switchTab('home')">
+                    <div class="w-9 h-9 border border-drip-purple bg-black rounded flex items-center justify-center text-drip-cyan font-gothic text-2xl shadow-[0_0_10px_rgba(168,85,247,0.4)]">
+                        O
+                    </div>
+                    <div>
+                        <span class="font-syne nav-logo-clamp font-extrabold tracking-tight text-white block leading-none">
+                            OUTLAW <span class="text-drip-gradient font-gothic text-xl sm:text-2xl">Cap</span>
+                        </span>
+                        <span class="block text-[8px] sm:text-[9px] text-drip-cyan font-montserrat font-bold tracking-[0.25em] uppercase mt-0.5">High-End Streetwear</span>
+                    </div>
+                </div>
+
+                <!-- NAVIGATION (DESKTOP) -->
+                <nav class="hidden md:flex items-center gap-6 text-[11px] font-montserrat font-bold tracking-widest uppercase">
+                    <a href="javascript:void(0)" onclick="switchTab('home')" class="text-slate-300 hover:text-drip-cyan transition-colors">Inicio</a>
+                    <a href="javascript:void(0)" onclick="switchTab('catalog'); setCategory('Todas')" class="text-slate-300 hover:text-drip-cyan transition-colors">Catálogo</a>
+                    <a href="javascript:void(0)" onclick="switchTab('catalog'); setCategory('Gorras Originales')" class="text-slate-300 hover:text-drip-cyan transition-colors">Gorras Originales</a>
+                    <a href="javascript:void(0)" onclick="switchTab('catalog'); setCategory('Gorras AAA')" class="text-slate-300 hover:text-drip-cyan transition-colors">Gorras AAA</a>
+                    <a href="javascript:void(0)" onclick="switchTab('catalog'); setCategory('Camisetas')" class="text-slate-300 hover:text-drip-cyan transition-colors">Camisetas</a>
+                    <a href="javascript:void(0)" onclick="switchTab('catalog'); setCategory('Bandoleros')" class="text-slate-300 hover:text-drip-cyan transition-colors">Bandoleros</a>
+                </nav>
+
+                <!-- HEADER ACTIONS -->
+                <div class="flex items-center gap-3 sm:gap-4">
+                    <button onclick="openAdminModal()" class="text-slate-400 hover:text-drip-purple transition-colors text-[10px] sm:text-xs flex items-center gap-1.5 border border-drip-border hover:border-drip-purple/50 px-2.5 py-1.5 rounded bg-drip-surface/60 font-montserrat font-bold uppercase tracking-wider">
+                        <i class="fa-solid fa-lock text-[10px] text-drip-cyan"></i> <span class="hidden sm:inline">Admin</span>
+                    </button>
+
+                    <button onclick="toggleCartDrawer()" class="relative p-2 text-slate-200 hover:text-drip-cyan transition-colors">
+                        <i class="fa-solid fa-bag-shopping text-lg text-drip-purple"></i>
+                        <span id="cart-counter" class="absolute -top-1 -right-1 bg-drip-cyan text-black font-montserrat font-black text-[9px] rounded-full h-4.5 w-4.5 flex items-center justify-center border border-black">0</span>
+                    </button>
+
+                    <button onclick="toggleMobileMenu()" class="md:hidden text-xl text-slate-300 p-1.5">
+                        <i class="fa-solid fa-bars-staggered"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- NAVIGATION (MOBILE) -->
+        <div id="mobile-menu" class="hidden md:hidden border-b border-drip-purple/30 bg-drip-bg/95 px-6 py-5 space-y-3.5 text-xs font-montserrat font-bold uppercase tracking-widest">
+            <a href="javascript:void(0)" onclick="switchTab('home'); toggleMobileMenu()" class="block text-slate-300 hover:text-drip-cyan">Inicio</a>
+            <a href="javascript:void(0)" onclick="switchTab('catalog'); setCategory('Todas'); toggleMobileMenu()" class="block text-slate-300 hover:text-drip-cyan">Catálogo Completo</a>
+            <a href="javascript:void(0)" onclick="switchTab('catalog'); setCategory('Gorras Originales'); toggleMobileMenu()" class="block text-slate-300 hover:text-drip-cyan">Gorras Originales</a>
+            <a href="javascript:void(0)" onclick="switchTab('catalog'); setCategory('Gorras AAA'); toggleMobileMenu()" class="block text-slate-300 hover:text-drip-cyan">Gorras AAA</a>
+            <a href="javascript:void(0)" onclick="switchTab('catalog'); setCategory('Camisetas'); toggleMobileMenu()" class="block text-slate-300 hover:text-drip-cyan">Camisetas Streetwear</a>
+            <a href="javascript:void(0)" onclick="switchTab('catalog'); setCategory('Bandoleros'); toggleMobileMenu()" class="block text-slate-300 hover:text-drip-cyan">Bandoleros Drip</a>
+        </div>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <main class="flex-grow">
+        
+        <!-- INICIO / HERO -->
+        <section id="tab-home" class="block">
+            <!-- HERO PROPORCIONADO -->
+            <div class="relative py-16 sm:py-24 px-4 border-b border-drip-border overflow-hidden drip-divider flex items-center justify-center">
+                <div class="absolute -top-24 left-1/4 w-80 h-80 bg-drip-purple/15 rounded-full blur-[100px] pointer-events-none"></div>
+                <div class="absolute bottom-0 right-1/4 w-80 h-80 bg-drip-cyan/10 rounded-full blur-[100px] pointer-events-none"></div>
+
+                <div class="relative z-20 max-w-4xl mx-auto text-center space-y-6">
+                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-drip-purple/40 bg-black/60 text-drip-cyan text-[10px] font-montserrat font-extrabold uppercase tracking-[0.25em]">
+                        <i class="fa-solid fa-fire text-drip-purple text-xs"></i> Venezuela Streetwear Stock 2026
+                    </div>
+                    
+                    <h1 class="font-syne font-extrabold text-white uppercase tracking-tight hero-title-clamp">
+                        HIGH-END DRIP & <br>
+                        <span class="text-drip-gradient font-gothic hero-drip-clamp lowercase">streetwear</span>
+                        <span class="font-bebas text-drip-cyan tracking-wider"> EXCLUSIVO</span>
+                    </h1>
+
+                    <p class="text-slate-400 text-xs sm:text-sm md:text-base max-w-xl mx-auto font-sans font-normal tracking-wide leading-relaxed">
+                        Selección auténtica de gorras <strong class="text-white">Oakley</strong> y <strong class="text-white">Ámbula Originales</strong>, modelos <strong class="text-white">AAA Certificados</strong> (Jordan, Nike, Adidas, New Era), camisetas oversized y bandoleros tácticos.
+                    </p>
+
+                    <div class="flex flex-col sm:flex-row items-center justify-center gap-4 pt-2">
+                        <button onclick="switchTab('catalog')" class="w-full sm:w-auto px-8 py-3.5 btn-drip-primary font-montserrat text-xs uppercase tracking-[0.18em] rounded">
+                            <i class="fa-solid fa-bolt mr-2"></i> Explora el Stock
+                        </button>
+                        <a href="https://wa.me/584122013474?text=Hola%20Outlaw%20Cap,%20quisiera%20consultar%20disponibilidad." target="_blank" class="w-full sm:w-auto px-8 py-3.5 border border-drip-purple/50 hover:border-drip-cyan text-white font-montserrat font-bold text-xs uppercase tracking-[0.18em] transition-all bg-drip-surface/60 rounded text-center">
+                            <i class="fa-brands fa-whatsapp text-drip-cyan mr-2 text-sm"></i> WhatsApp Directo
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- MARCAS DE PRESTIGIO -->
+            <div class="py-10 border-b border-drip-border bg-black/50">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <p class="text-center text-[10px] font-montserrat font-extrabold uppercase tracking-[0.3em] text-drip-purple mb-6">
+                        MARCAS LÍDERES DISPONIBLES EN TIENDA
+                    </p>
+                    <div class="grid grid-cols-2 md:grid-cols-6 gap-3">
+                        <div class="p-3 border border-drip-border rounded bg-drip-surface/40 text-center hover:border-drip-purple transition-all">
+                            <span class="font-syne text-base text-white font-bold block">OAKLEY</span>
+                            <span class="text-[8px] font-montserrat font-black text-drip-cyan uppercase tracking-wider">100% Original</span>
+                        </div>
+                        <div class="p-3 border border-drip-border rounded bg-drip-surface/40 text-center hover:border-drip-purple transition-all">
+                            <span class="font-syne text-base text-white font-bold block">ÁMBULA</span>
+                            <span class="text-[8px] font-montserrat font-black text-drip-cyan uppercase tracking-wider">100% Original</span>
+                        </div>
+                        <div class="p-3 border border-drip-border rounded bg-drip-surface/40 text-center hover:border-drip-purple transition-all">
+                            <span class="font-syne text-base text-white font-bold block">JORDAN</span>
+                            <span class="text-[8px] font-montserrat font-bold text-drip-purple uppercase tracking-wider">Calidad AAA</span>
+                        </div>
+                        <div class="p-3 border border-drip-border rounded bg-drip-surface/40 text-center hover:border-drip-purple transition-all">
+                            <span class="font-syne text-base text-white font-bold block">NIKE</span>
+                            <span class="text-[8px] font-montserrat font-bold text-drip-purple uppercase tracking-wider">Calidad AAA</span>
+                        </div>
+                        <div class="p-3 border border-drip-border rounded bg-drip-surface/40 text-center hover:border-drip-purple transition-all">
+                            <span class="font-syne text-base text-white font-bold block">ADIDAS</span>
+                            <span class="text-[8px] font-montserrat font-bold text-drip-purple uppercase tracking-wider">Calidad AAA</span>
+                        </div>
+                        <div class="p-3 border border-drip-border rounded bg-drip-surface/40 text-center hover:border-drip-purple transition-all col-span-2 md:col-span-1">
+                            <span class="font-syne text-base text-white font-bold block">NEW ERA</span>
+                            <span class="text-[8px] font-montserrat font-bold text-drip-purple uppercase tracking-wider">Calidad AAA</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- DESTACADOS -->
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
+                <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-8 border-b border-drip-border pb-4">
+                    <div>
+                        <span class="text-drip-cyan text-[10px] font-montserrat font-extrabold tracking-[0.25em] uppercase">DROP DESTACADO</span>
+                        <h2 class="text-2xl sm:text-3xl font-syne font-extrabold text-white uppercase tracking-wider mt-1">Lo Más Vendido</h2>
+                    </div>
+                    <button onclick="switchTab('catalog')" class="mt-3 md:mt-0 text-xs font-montserrat font-bold tracking-widest uppercase text-drip-purple hover:text-drip-cyan transition-colors">
+                        Ver Catálogo Completo &rarr;
+                    </button>
+                </div>
+
+                <div id="home-featured-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Dinámico -->
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN CATÁLOGO -->
+        <section id="tab-catalog" class="hidden max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <div class="text-center mb-8">
+                <span class="text-drip-cyan text-[10px] font-montserrat font-extrabold tracking-[0.25em] uppercase">STOCK DISPONIBLE</span>
+                <h1 class="text-3xl sm:text-4xl font-syne font-extrabold text-white uppercase tracking-wider mt-1">Catálogo Outlaw</h1>
+            </div>
+
+            <!-- FILTROS & BÚSQUEDA -->
+            <div class="bg-drip-surface/80 border border-drip-purple/30 p-5 rounded-lg mb-8 space-y-4 backdrop-blur-md">
+                <div class="relative">
+                    <i class="fa-solid fa-magnifying-glass absolute left-4 top-1/2 -translate-y-1/2 text-drip-purple text-xs"></i>
+                    <input type="text" id="catalog-search" onkeyup="applyFilters()" placeholder="Buscar por marca, modelo o tipo (ej: Oakley, Jordan, Bandolero)..." class="w-full bg-drip-bg border border-drip-border text-white text-xs pl-10 pr-4 py-3 rounded focus:outline-none focus:border-drip-cyan transition-colors font-sans">
+                </div>
+
+                <div class="flex flex-wrap items-center justify-between gap-3">
+                    <div class="flex flex-wrap gap-2 text-[11px] font-montserrat font-bold uppercase tracking-wider" id="category-tabs">
+                        <button onclick="setCategory('Todas')" class="cat-btn active px-3.5 py-2 border border-drip-cyan bg-drip-cyan text-black rounded font-extrabold">Todas</button>
+                        <button onclick="setCategory('Gorras Originales')" class="cat-btn px-3.5 py-2 border border-drip-border text-slate-300 hover:border-drip-purple transition-colors rounded">Gorras Originales</button>
+                        <button onclick="setCategory('Gorras AAA')" class="cat-btn px-3.5 py-2 border border-drip-border text-slate-300 hover:border-drip-purple transition-colors rounded">Gorras AAA</button>
+                        <button onclick="setCategory('Camisetas')" class="cat-btn px-3.5 py-2 border border-drip-border text-slate-300 hover:border-drip-purple transition-colors rounded">Camisetas</button>
+                        <button onclick="setCategory('Bandoleros')" class="cat-btn px-3.5 py-2 border border-drip-border text-slate-300 hover:border-drip-purple transition-colors rounded">Bandoleros</button>
+                    </div>
+
+                    <select id="brand-select" onchange="applyFilters()" class="bg-drip-bg border border-drip-border text-[11px] text-slate-200 uppercase font-montserrat font-bold tracking-wider px-3 py-2 rounded focus:outline-none focus:border-drip-cyan">
+                        <option value="ALL">Todas las Marcas</option>
+                        <option value="Oakley">Oakley</option>
+                        <option value="Ámbula">Ámbula</option>
+                        <option value="Jordan">Jordan</option>
+                        <option value="Adidas">Adidas</option>
+                        <option value="Nike">Nike</option>
+                        <option value="New Era">New Era</option>
+                        <option value="Outlaw">Outlaw Apparel</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- GRID PRODUCTOS -->
+            <div id="catalog-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
+                <!-- Carga dinámica -->
+            </div>
+        </section>
+
+    </main>
+
+    <!-- BOTÓN FLOTANTE WHATSAPP -->
+    <a href="https://wa.me/584122013474?text=Hola%20Outlaw%20Cap,%20quiero%20hacer%20una%20consulta." target="_blank" class="fixed bottom-5 right-5 z-50 w-13 h-13 sm:w-14 sm:h-14 bg-black border-2 border-drip-cyan text-drip-cyan rounded-full flex items-center justify-center hover:bg-drip-cyan hover:text-black transition-all shadow-[0_0_18px_rgba(0,255,204,0.4)] group">
+        <i class="fa-brands fa-whatsapp text-2xl sm:text-3xl group-hover:scale-110 transition-transform"></i>
+    </a>
+
+    <!-- CART DRAWER -->
+    <div id="cart-drawer" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-md hidden justify-end">
+        <div class="w-full max-w-md bg-drip-bg border-l border-drip-purple/30 h-full flex flex-col justify-between p-5 overflow-y-auto">
+            <div>
+                <div class="flex items-center justify-between border-b border-drip-border pb-3">
+                    <div class="flex items-center gap-2">
+                        <i class="fa-solid fa-bag-shopping text-drip-cyan text-base"></i>
+                        <h3 class="font-syne text-lg font-bold uppercase text-white tracking-wider">Tu Bolsa Outlaw</h3>
+                    </div>
+                    <button onclick="toggleCartDrawer()" class="text-slate-400 hover:text-white">
+                        <i class="fa-solid fa-xmark text-lg"></i>
+                    </button>
+                </div>
+
+                <div id="cart-list" class="py-4 space-y-3">
+                    <!-- Dinámico -->
+                </div>
+            </div>
+
+            <div class="border-t border-drip-border pt-4 space-y-3">
+                <div class="space-y-2">
+                    <label class="block text-[10px] font-montserrat font-extrabold uppercase tracking-widest text-drip-cyan">Datos de Despacho (Venezuela):</label>
+                    <input type="text" id="cust-name" placeholder="Nombre y Apellido *" class="w-full bg-drip-surface border border-drip-border text-xs text-white p-2.5 rounded focus:outline-none focus:border-drip-purple">
+                    <input type="text" id="cust-city" placeholder="Ciudad y Estado *" class="w-full bg-drip-surface border border-drip-border text-xs text-white p-2.5 rounded focus:outline-none focus:border-drip-purple">
+                </div>
+
+                <div class="bg-drip-surface/60 p-3 rounded border border-drip-border space-y-1.5 text-xs">
+                    <div class="flex justify-between text-slate-400">
+                        <span>Total USD:</span>
+                        <span id="cart-total-usd" class="font-bold text-white text-sm">$0.00</span>
+                    </div>
+                    <div class="flex justify-between text-slate-400">
+                        <span>Ref. Estimada (Bs.):</span>
+                        <span id="cart-total-bs" class="font-bold text-drip-cyan text-sm">0.00 Bs</span>
+                    </div>
+                </div>
+
+                <button onclick="sendWhatsAppOrder()" class="w-full py-3.5 btn-drip-primary text-xs font-montserrat font-black uppercase tracking-widest rounded">
+                    <i class="fa-brands fa-whatsapp mr-2 text-sm"></i> Confirmar por WhatsApp
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL DETALLE -->
+    <div id="product-modal" class="fixed inset-0 z-50 bg-black/85 backdrop-blur-md hidden items-center justify-center p-4">
+        <div class="bg-drip-bg border border-drip-purple/40 rounded max-w-lg w-full p-5 relative shadow-[0_0_25px_rgba(168,85,247,0.3)]">
+            <button onclick="closeProductModal()" class="absolute top-4 right-4 text-slate-400 hover:text-white">
+                <i class="fa-solid fa-xmark text-lg"></i>
+            </button>
+            <div id="product-modal-body">
+                <!-- Dinámico -->
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL ADMIN -->
+    <div id="admin-modal" class="fixed inset-0 z-50 bg-black/95 backdrop-blur-md hidden items-center justify-center p-4 overflow-y-auto">
+        <div class="bg-drip-bg border border-drip-purple/50 rounded-lg max-w-3xl w-full p-5 sm:p-7 relative shadow-[0_0_35px_rgba(168,85,247,0.35)] my-6">
+            <button onclick="closeAdminModal()" class="absolute top-5 right-5 text-slate-400 hover:text-white">
+                <i class="fa-solid fa-xmark text-lg"></i>
+            </button>
+
+            <!-- Login -->
+            <div id="admin-login" class="max-w-xs mx-auto text-center py-6">
+                <div class="w-12 h-12 border border-drip-purple bg-black rounded-full flex items-center justify-center text-drip-cyan mx-auto mb-3 text-lg shadow-[0_0_12px_rgba(168,85,247,0.4)]">
+                    <i class="fa-solid fa-shield-halved"></i>
+                </div>
+                <h3 class="font-syne text-xl font-bold uppercase text-white mb-1">Acceso Administrador</h3>
+                <p class="text-xs text-slate-400 mb-5 font-sans">Ingresa la contraseña para gestionar la tienda.</p>
+                <input type="password" id="admin-pass" placeholder="Contraseña (outlaw123)" class="w-full bg-drip-surface border border-drip-border text-xs text-white p-3 text-center rounded mb-3 focus:outline-none focus:border-drip-cyan">
+                <button onclick="verifyAdmin()" class="w-full py-3 btn-drip-primary text-xs font-montserrat uppercase tracking-widest rounded">Entrar</button>
+            </div>
+
+            <!-- Panel Admin -->
+            <div id="admin-panel" class="hidden space-y-5">
+                <div class="flex justify-between items-center border-b border-drip-border pb-3">
+                    <h3 class="font-syne text-xl font-bold text-drip-cyan uppercase">Gestión de Inventario & Banner</h3>
+                    <button onclick="logoutAdmin()" class="text-xs text-slate-400 hover:text-red-400 font-montserrat uppercase tracking-wider">Cerrar Sesión</button>
+                </div>
+
+                <!-- Modificar Banner -->
+                <div class="bg-drip-surface/70 p-3.5 border border-drip-border rounded space-y-2">
+                    <h4 class="text-xs font-montserrat font-extrabold uppercase tracking-wider text-drip-purple">Modificar Banner Superior</h4>
+                    <div class="flex gap-2">
+                        <input type="text" id="admin-banner-input" placeholder="Texto de la marquesina..." class="w-full bg-drip-bg border border-drip-border text-xs text-white p-2.5 rounded focus:outline-none focus:border-drip-cyan">
+                        <button onclick="updateBannerText()" class="px-4 bg-drip-purple hover:bg-drip-purpleGlow text-white text-xs font-montserrat uppercase font-bold rounded">Actualizar</button>
+                    </div>
+                </div>
+
+                <!-- Formulario Producto -->
+                <div class="bg-drip-surface/70 p-3.5 border border-drip-border rounded space-y-3">
+                    <h4 id="admin-form-title" class="text-xs font-montserrat font-extrabold uppercase tracking-wider text-drip-purple">Agregar Producto</h4>
+                    <form onsubmit="handleSaveProduct(event)" class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                        <input type="hidden" id="p-edit-id" value="">
+                        
+                        <input type="text" id="p-name" required placeholder="Nombre del Producto" class="bg-drip-bg border border-drip-border text-xs text-white p-2.5 rounded focus:outline-none focus:border-drip-cyan">
+                        
+                        <select id="p-brand" required class="bg-drip-bg border border-drip-border text-xs text-white p-2.5 rounded focus:outline-none focus:border-drip-cyan">
+                            <option value="Oakley">Oakley</option>
+                            <option value="Ámbula">Ámbula</option>
+                            <option value="Jordan">Jordan</option>
+                            <option value="Adidas">Adidas</option>
+                            <option value="Nike">Nike</option>
+                            <option value="New Era">New Era</option>
+                            <option value="Outlaw">Outlaw Apparel</option>
+                        </select>
+
+                        <select id="p-category" required class="bg-drip-bg border border-drip-border text-xs text-white p-2.5 rounded focus:outline-none focus:border-drip-cyan">
+                            <option value="Gorras Originales">Gorras Originales</option>
+                            <option value="Gorras AAA">Gorras AAA</option>
+                            <option value="Camisetas">Camisetas</option>
+                            <option value="Bandoleros">Bandoleros</option>
+                        </select>
+
+                        <select id="p-quality" required class="bg-drip-bg border border-drip-border text-xs text-white p-2.5 rounded focus:outline-none focus:border-drip-cyan">
+                            <option value="Original">ORIGINAL</option>
+                            <option value="AAA">CALIDAD AAA</option>
+                        </select>
+
+                        <input type="number" step="0.01" id="p-price" required placeholder="Precio USD ($)" class="bg-drip-bg border border-drip-border text-xs text-white p-2.5 rounded focus:outline-none focus:border-drip-cyan">
+                        
+                        <input type="url" id="p-image" required placeholder="URL Imagen (https://...)" class="bg-drip-bg border border-drip-border text-xs text-white p-2.5 rounded focus:outline-none focus:border-drip-cyan">
+
+                        <div class="sm:col-span-2 flex gap-2">
+                            <button type="submit" id="admin-submit-btn" class="flex-grow py-3 btn-drip-primary text-xs font-montserrat uppercase tracking-widest rounded">
+                                Guardar Producto
+                            </button>
+                            <button type="button" onclick="resetAdminForm()" class="px-4 py-3 border border-drip-border hover:bg-drip-border text-xs text-slate-300 font-montserrat uppercase rounded">
+                                Cancelar
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Tabla Inventario -->
+                <div class="bg-drip-surface/70 p-3.5 border border-drip-border rounded overflow-x-auto">
+                    <h4 class="text-xs font-montserrat font-extrabold uppercase tracking-wider text-drip-purple mb-3">Productos en Stock</h4>
+                    <table class="w-full text-left text-xs text-slate-300">
+                        <thead class="bg-drip-bg text-slate-400 uppercase font-montserrat text-[9px]">
+                            <tr>
+                                <th class="p-2">Producto</th>
+                                <th class="p-2">Categoría</th>
+                                <th class="p-2">Badge</th>
+                                <th class="p-2">Precio</th>
+                                <th class="p-2 text-right">Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody id="admin-table-body" class="divide-y divide-drip-border">
+                            <!-- Dinámico -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="bg-black border-t border-drip-purple/30 py-10 mt-16 text-xs text-slate-500">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-3">
+            <span class="font-syne text-xl font-extrabold text-white tracking-widest block">
+                OUTLAW <span class="text-drip-cyan font-gothic text-2xl">Cap</span>
+            </span>
+            <p class="max-w-md mx-auto text-slate-400 text-[11px] font-sans">
+                Gorras Oakley & Ámbula Originales, piezas AAA seleccionadas, camisetas oversized y bandoleros en Venezuela.
+            </p>
+            <div class="pt-3 border-t border-drip-border/40 text-[9px] tracking-widest uppercase font-montserrat">
+                &copy; <span id="year"></span> OUTLAW CAP VENEZUELA. TODOS LOS DERECHOS RESERVADOS.
+            </div>
+        </div>
+    </footer>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        const WHATSAPP_NUM = "584122013474";
+        const ADMIN_CODE = "outlaw123";
+        const BS_RATE = 50.00;
+
+        let appState = {
+            activeCategory: 'Todas',
+            cart: [],
+            products: [
+                {
+                    id: "p1",
+                    name: "Gorra Oakley Metal Icon Cap",
+                    brand: "Oakley",
+                    category: "Gorras Originales",
+                    quality: "Original",
+                    price: 38.00,
+                    image: "https://images.unsplash.com/photo-1588850561407-ed78c282e89b?auto=format&fit=crop&w=800&q=80",
+                    description: "Gorra Oakley 100% Original con placa metálica frontal cromada. Ajuste y estructura premium."
+                },
+                {
+                    id: "p2",
+                    name: "Gorra Ámbula Distressed Urban",
+                    brand: "Ámbula",
+                    category: "Gorras Originales",
+                    quality: "Original",
+                    price: 34.00,
+                    image: "https://images.unsplash.com/photo-1575428652377-a2d80e2277fc?auto=format&fit=crop&w=800&q=80",
+                    description: "Modelo Ámbula 100% Original con terminados desgastados de alta precisión y costuras reforzadas."
+                },
+                {
+                    id: "p3",
+                    name: "Gorra Jordan Pro Jumpman Drip",
+                    brand: "Jordan",
+                    category: "Gorras AAA",
+                    quality: "AAA",
+                    price: 22.00,
+                    image: "https://images.unsplash.com/photo-1534215754734-18e55d13e346?auto=format&fit=crop&w=800&q=80",
+                    description: "Réplica AAA certificada de máxima fidelidad con bordado frontal Jumpman tridimensional."
+                },
+                {
+                    id: "p4",
+                    name: "Gorra Adidas Trefoil Classic",
+                    brand: "Adidas",
+                    category: "Gorras AAA",
+                    quality: "AAA",
+                    price: 20.00,
+                    image: "https://images.unsplash.com/photo-1521369984125-650a3a81072e?auto=format&fit=crop&w=800&q=80",
+                    description: "Modelo estructurado con bordado trébol frontal y hebilla trasera metálica."
+                },
+                {
+                    id: "p5",
+                    name: "Gorra Nike Heritage Metallic",
+                    brand: "Nike",
+                    category: "Gorras AAA",
+                    quality: "AAA",
+                    price: 20.00,
+                    image: "https://images.unsplash.com/photo-1618354691373-d851c5c3a990?auto=format&fit=crop&w=800&q=80",
+                    description: "Diseño urbano en poliéster de alta densidad con swoosh metálico lateral."
+                },
+                {
+                    id: "p6",
+                    name: "Gorra New Era 59FIFTY Fitted",
+                    brand: "New Era",
+                    category: "Gorras AAA",
+                    quality: "AAA",
+                    price: 24.00,
+                    image: "https://images.unsplash.com/photo-1576871337622-98d48d1cf531?auto=format&fit=crop&w=800&q=80",
+                    description: "Estilo cerrado de visera plana de calidad superior AAA."
+                },
+                {
+                    id: "p7",
+                    name: "Camiseta Outlaw Heavyweight Oversized",
+                    brand: "Outlaw",
+                    category: "Camisetas",
+                    quality: "Original",
+                    price: 26.00,
+                    image: "https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&w=800&q=80",
+                    description: "Algodón pesado de 240g con corte holgado urbano y serigrafía de alto relieve."
+                },
+                {
+                    id: "p8",
+                    name: "Bandolero Shoulder Bag Stealth",
+                    brand: "Outlaw",
+                    category: "Bandoleros",
+                    quality: "Original",
+                    price: 25.00,
+                    image: "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=800&q=80",
+                    description: "Bolsito de hombro impermeable con cierres sellados y correa regulable."
+                }
+            ]
+        };
+
+        window.onload = function() {
+            document.getElementById('year').innerText = new Date().getFullYear();
+            renderHomeGrid();
+            renderCatalogGrid();
+            renderAdminTable();
+        };
+
+        function switchTab(tabId) {
+            document.getElementById('tab-home').classList.add('hidden');
+            document.getElementById('tab-catalog').classList.add('hidden');
+            document.getElementById(`tab-${tabId}`).classList.remove('hidden');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function toggleMobileMenu() {
+            document.getElementById('mobile-menu').classList.toggle('hidden');
+        }
+
+        function renderHomeGrid() {
+            const container = document.getElementById('home-featured-grid');
+            const featured = appState.products.slice(0, 6);
+            container.innerHTML = featured.map(p => createProductCardHTML(p)).join('');
+        }
+
+        function renderCatalogGrid() {
+            const container = document.getElementById('catalog-grid');
+            const searchVal = document.getElementById('catalog-search')?.value.toLowerCase() || '';
+            const brandVal = document.getElementById('brand-select')?.value || 'ALL';
+
+            const filtered = appState.products.filter(p => {
+                const matchesCat = appState.activeCategory === 'Todas' || p.category === appState.activeCategory;
+                const matchesSearch = p.name.toLowerCase().includes(searchVal) || p.brand.toLowerCase().includes(searchVal);
+                const matchesBrand = brandVal === 'ALL' || p.brand === brandVal;
+                return matchesCat && matchesSearch && matchesBrand;
+            });
+
+            if (filtered.length === 0) {
+                container.innerHTML = `<div class="col-span-full text-center py-12 text-slate-500 font-montserrat font-bold text-xs uppercase tracking-widest">No hay piezas encontradas con estos filtros.</div>`;
+            } else {
+                container.innerHTML = filtered.map(p => createProductCardHTML(p)).join('');
+            }
+        }
+
+        function createProductCardHTML(product) {
+            const isOriginal = product.quality === 'Original';
+            const badgeClass = isOriginal ? 'badge-original' : 'badge-aaa';
+            const badgeText = isOriginal ? 'ORIGINAL' : 'CALIDAD AAA';
+
+            return `
+                <div class="drip-card rounded overflow-hidden flex flex-col justify-between group">
+                    <div class="relative aspect-square overflow-hidden bg-black/60 cursor-pointer" onclick="openProductModal('${product.id}')">
+                        <img src="${product.image}" alt="${product.name}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-90 group-hover:opacity-100">
+                        <span class="absolute top-2.5 left-2.5 px-2.5 py-0.5 rounded text-[8px] font-montserrat font-black tracking-widest uppercase ${badgeClass}">
+                            ${badgeText}
+                        </span>
+                    </div>
+                    <div class="p-4 flex-grow flex flex-col justify-between space-y-3">
+                        <div>
+                            <span class="text-[9px] font-montserrat font-black uppercase tracking-widest text-drip-purple">${product.brand}</span>
+                            <h3 class="font-syne text-base font-bold text-white leading-snug group-hover:text-drip-cyan transition-colors mt-0.5">${product.name}</h3>
+                        </div>
+                        <div class="flex justify-between items-center pt-2.5 border-t border-drip-border/60">
+                            <span class="font-syne text-xl font-extrabold text-white">$${product.price.toFixed(2)}</span>
+                            <button onclick="addToCart('${product.id}')" class="px-3.5 py-1.5 border border-drip-purple/50 hover:border-drip-cyan text-slate-200 hover:text-drip-cyan font-montserrat font-bold text-[9px] uppercase tracking-widest rounded transition-all bg-drip-surface/60">
+                                + Agregar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function setCategory(cat) {
+            appState.activeCategory = cat;
+            document.querySelectorAll('#category-tabs .cat-btn').forEach(btn => {
+                if(btn.innerText.includes(cat) || (cat === 'Todas' && btn.innerText === 'Todas')) {
+                    btn.className = "cat-btn active px-3.5 py-2 border border-drip-cyan bg-drip-cyan text-black rounded font-extrabold";
+                } else {
+                    btn.className = "cat-btn px-3.5 py-2 border border-drip-border text-slate-300 hover:border-drip-purple transition-colors rounded";
+                }
+            });
+            applyFilters();
+        }
+
+        function applyFilters() {
+            renderCatalogGrid();
+        }
+
+        /* CARRITO Y WHATSAPP */
+        function addToCart(prodId) {
+            const product = appState.products.find(p => p.id === prodId);
+            if (!product) return;
+
+            const existing = appState.cart.find(item => item.id === prodId);
+            if (existing) {
+                existing.qty += 1;
+            } else {
+                appState.cart.push({ ...product, qty: 1 });
+            }
+            updateCartUI();
+            toggleCartDrawer(true);
+        }
+
+        function updateCartUI() {
+            const counter = document.getElementById('cart-counter');
+            const totalQty = appState.cart.reduce((sum, i) => sum + i.qty, 0);
+            counter.innerText = totalQty;
+
+            const list = document.getElementById('cart-list');
+            if (appState.cart.length === 0) {
+                list.innerHTML = `<p class="text-center text-slate-500 text-xs py-8 font-montserrat uppercase tracking-widest">Tu bolsa se encuentra vacía.</p>`;
+            } else {
+                list.innerHTML = appState.cart.map(item => `
+                    <div class="flex justify-between items-center bg-drip-surface p-2.5 rounded border border-drip-border">
+                        <div class="flex items-center gap-2.5">
+                            <img src="${item.image}" class="w-10 h-10 object-cover rounded border border-drip-border">
+                            <div>
+                                <h4 class="font-syne text-xs font-bold text-white">${item.name}</h4>
+                                <span class="text-[9px] text-drip-purple font-montserrat font-bold">$${item.price.toFixed(2)} USD</span>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-1.5">
+                            <button onclick="changeQty('${item.id}', -1)" class="w-5 h-5 border border-drip-border rounded flex items-center justify-center text-xs text-slate-300 hover:border-drip-purple">-</button>
+                            <span class="text-xs font-bold font-sans text-white px-1">${item.qty}</span>
+                            <button onclick="changeQty('${item.id}', 1)" class="w-5 h-5 border border-drip-border rounded flex items-center justify-center text-xs text-slate-300 hover:border-drip-purple">+</button>
+                        </div>
+                    </div>
+                `).join('');
+            }
+
+            const totalUSD = appState.cart.reduce((sum, i) => sum + (i.price * i.qty), 0);
+            const totalBS = totalUSD * BS_RATE;
+            document.getElementById('cart-total-usd').innerText = `$${totalUSD.toFixed(2)}`;
+            document.getElementById('cart-total-bs').innerText = `${totalBS.toLocaleString('es-VE', {minimumFractionDigits: 2})} Bs`;
+        }
+
+        function changeQty(id, delta) {
+            const item = appState.cart.find(i => i.id === id);
+            if (!item) return;
+            item.qty += delta;
+            if (item.qty <= 0) {
+                appState.cart = appState.cart.filter(i => i.id !== id);
+            }
+            updateCartUI();
+        }
+
+        function toggleCartDrawer(forceOpen = false) {
+            const drawer = document.getElementById('cart-drawer');
+            if (forceOpen) {
+                drawer.classList.remove('hidden');
+                drawer.classList.add('flex');
+            } else {
+                drawer.classList.toggle('hidden');
+                drawer.classList.toggle('flex');
+            }
+        }
+
+        function sendWhatsAppOrder() {
+            if (appState.cart.length === 0) {
+                alert("Agrega al menos una pieza a la bolsa.");
+                return;
+            }
+            const name = document.getElementById('cust-name').value.trim();
+            const city = document.getElementById('cust-city').value.trim();
+
+            if (!name || !city) {
+                alert("Ingresa tu Nombre y Ciudad para coordinar la entrega.");
+                return;
+            }
+
+            let msg = `*⚡ PEDIDO OUTLAW CAP VENEZUELA ⚡*\n`;
+            msg += `==================================\n`;
+            msg += `*Cliente:* ${name}\n`;
+            msg += `*Ubicación:* ${city}\n\n`;
+            msg += `*DETALLE DE PIEZAS:*\n`;
+
+            appState.cart.forEach((item, index) => {
+                msg += `${index + 1}. ${item.name} [${item.quality}]\n   • Cantidad: ${item.qty} x $${item.price.toFixed(2)} USD\n`;
+            });
+
+            const totalUSD = appState.cart.reduce((sum, i) => sum + (i.price * i.qty), 0);
+            const totalBS = totalUSD * BS_RATE;
+
+            msg += `\n*TOTAL USD:* $${totalUSD.toFixed(2)}\n`;
+            msg += `*REF ESTIMADA BS:* ${totalBS.toLocaleString('es-VE', {minimumFractionDigits: 2})} Bs.\n`;
+            msg += `==================================\n`;
+            msg += `Quedo atento a los datos para efectuar el pago y envío.`;
+
+            const encoded = encodeURIComponent(msg);
+            window.open(`https://wa.me/${WHATSAPP_NUM}?text=${encoded}`, '_blank');
+        }
+
+        /* MODAL PRODUCTO */
+        function openProductModal(id) {
+            const product = appState.products.find(p => p.id === id);
+            if (!product) return;
+            const body = document.getElementById('product-modal-body');
+            const isOriginal = product.quality === 'Original';
+            const badgeClass = isOriginal ? 'badge-original' : 'badge-aaa';
+
+            body.innerHTML = `
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                    <img src="${product.image}" class="w-full aspect-square object-cover rounded border border-drip-border">
+                    <div class="space-y-3 flex flex-col justify-between">
+                        <div>
+                            <span class="px-2 py-0.5 rounded text-[8px] font-montserrat font-black tracking-widest uppercase ${badgeClass}">
+                                ${product.quality}
+                            </span>
+                            <h3 class="font-syne text-xl font-bold text-white mt-2">${product.name}</h3>
+                            <p class="text-xs text-slate-400 font-sans leading-relaxed mt-2">${product.description}</p>
+                        </div>
+                        <div class="space-y-2.5 pt-3 border-t border-drip-border">
+                            <span class="font-syne text-2xl font-extrabold text-white">$${product.price.toFixed(2)} USD</span>
+                            <button onclick="addToCart('${product.id}'); closeProductModal();" class="w-full py-3 btn-drip-primary text-xs font-montserrat uppercase tracking-widest rounded">
+                                Agregar a la Bolsa
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `;
+            document.getElementById('product-modal').classList.remove('hidden');
+            document.getElementById('product-modal').classList.add('flex');
+        }
+
+        function closeProductModal() {
+            document.getElementById('product-modal').classList.add('hidden');
+            document.getElementById('product-modal').classList.remove('flex');
+        }
+
+        /* MODAL ADMIN */
+        function openAdminModal() {
+            document.getElementById('admin-modal').classList.remove('hidden');
+            document.getElementById('admin-modal').classList.add('flex');
+        }
+
+        function closeAdminModal() {
+            document.getElementById('admin-modal').classList.add('hidden');
+            document.getElementById('admin-modal').classList.remove('flex');
+        }
+
+        function verifyAdmin() {
+            const input = document.getElementById('admin-pass').value;
+            if (input === ADMIN_CODE) {
+                document.getElementById('admin-login').classList.add('hidden');
+                document.getElementById('admin-panel').classList.remove('hidden');
+            } else {
+                alert("Clave incorrecta.");
+            }
+        }
+
+        function logoutAdmin() {
+            document.getElementById('admin-login').classList.remove('hidden');
+            document.getElementById('admin-panel').classList.add('hidden');
+            document.getElementById('admin-pass').value = '';
+        }
+
+        function updateBannerText() {
+            const text = document.getElementById('admin-banner-input').value.trim();
+            if (text) {
+                document.getElementById('banner-text').innerText = text;
+                alert("Banner actualizado correctamente.");
+            }
+        }
+
+        function editProduct(id) {
+            const prod = appState.products.find(p => p.id === id);
+            if (!prod) return;
+
+            document.getElementById('p-edit-id').value = prod.id;
+            document.getElementById('p-name').value = prod.name;
+            document.getElementById('p-brand').value = prod.brand;
+            document.getElementById('p-category').value = prod.category;
+            document.getElementById('p-quality').value = prod.quality;
+            document.getElementById('p-price').value = prod.price;
+            document.getElementById('p-image').value = prod.image;
+
+            document.getElementById('admin-form-title').innerText = "Editar Producto";
+            document.getElementById('admin-submit-btn').innerText = "Actualizar Producto";
+        }
+
+        function resetAdminForm() {
+            document.getElementById('p-edit-id').value = "";
+            document.getElementById('p-name').value = "";
+            document.getElementById('p-price').value = "";
+            document.getElementById('p-image').value = "";
+            document.getElementById('admin-form-title').innerText = "Agregar Producto";
+            document.getElementById('admin-submit-btn').innerText = "Guardar Producto";
+        }
+
+        function handleSaveProduct(e) {
+            e.preventDefault();
+            const editId = document.getElementById('p-edit-id').value;
+
+            if (editId) {
+                const index = appState.products.findIndex(p => p.id === editId);
+                if (index !== -1) {
+                    appState.products[index].name = document.getElementById('p-name').value;
+                    appState.products[index].brand = document.getElementById('p-brand').value;
+                    appState.products[index].category = document.getElementById('p-category').value;
+                    appState.products[index].quality = document.getElementById('p-quality').value;
+                    appState.products[index].price = parseFloat(document.getElementById('p-price').value);
+                    appState.products[index].image = document.getElementById('p-image').value;
+                }
+                alert("Producto modificado correctamente.");
+            } else {
+                const newProd = {
+                    id: "p" + Date.now(),
+                    name: document.getElementById('p-name').value,
+                    brand: document.getElementById('p-brand').value,
+                    category: document.getElementById('p-category').value,
+                    quality: document.getElementById('p-quality').value,
+                    price: parseFloat(document.getElementById('p-price').value),
+                    image: document.getElementById('p-image').value,
+                    description: "Nueva pieza agregada al inventario de Outlaw Cap Venezuela."
+                };
+                appState.products.unshift(newProd);
+                alert("Producto agregado al catálogo.");
+            }
+
+            resetAdminForm();
+            renderHomeGrid();
+            renderCatalogGrid();
+            renderAdminTable();
+        }
+
+        function deleteProduct(id) {
+            if (confirm("¿Confirmas eliminar esta pieza de la tienda?")) {
+                appState.products = appState.products.filter(p => p.id !== id);
+                renderHomeGrid();
+                renderCatalogGrid();
+                renderAdminTable();
+            }
+        }
+
+        function renderAdminTable() {
+            const body = document.getElementById('admin-table-body');
+            body.innerHTML = appState.products.map(p => `
+                <tr>
+                    <td class="p-2 font-syne font-bold text-white">${p.name}</td>
+                    <td class="p-2">${p.category}</td>
+                    <td class="p-2 font-bold ${p.quality === 'Original' ? 'text-drip-cyan' : 'text-drip-purple'}">${p.quality}</td>
+                    <td class="p-2 font-bold text-white">$${p.price.toFixed(2)}</td>
+                    <td class="p-2 text-right space-x-2">
+                        <button onclick="editProduct('${p.id}')" class="text-drip-cyan hover:underline text-xs">
+                            <i class="fa-solid fa-pen-to-square"></i>
+                        </button>
+                        <button onclick="deleteProduct('${p.id}')" class="text-red-400 hover:text-red-300 text-xs">
+                            <i class="fa-solid fa-trash"></i>
+                        </button>
+                    </td>
+                </tr>
+            `).join('');
+        }
+    </script>
+</body>
+</html>
