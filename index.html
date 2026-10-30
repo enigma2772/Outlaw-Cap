@@ -44,21 +44,16 @@
     </script>
 
     <style>
-        /* Responsive Title Sizing with Clamp */
         .hero-title-clamp {
             font-size: clamp(2rem, 5vw, 4.2rem);
             line-height: 1.08;
         }
-
         .hero-drip-clamp {
             font-size: clamp(2.2rem, 6vw, 4.8rem);
         }
-
         .nav-logo-clamp {
             font-size: clamp(1.15rem, 2.5vw, 1.45rem);
         }
-
-        /* Scrollbar Styling */
         ::-webkit-scrollbar {
             width: 7px;
         }
@@ -69,22 +64,18 @@
             background: linear-gradient(180deg, #a855f7, #00ffcc);
             border-radius: 4px;
         }
-
-        /* Ambient Cards & Glass Effect */
         .drip-glass {
             background: rgba(15, 15, 20, 0.88);
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
             border-bottom: 1px solid rgba(168, 85, 247, 0.2);
         }
-
         .drip-card {
             background: linear-gradient(165deg, rgba(20, 20, 28, 0.95) 0%, rgba(12, 12, 16, 0.98) 100%);
             border: 1px solid rgba(255, 255, 255, 0.08);
             transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
             position: relative;
         }
-
         .drip-card::before {
             content: '';
             position: absolute;
@@ -98,24 +89,18 @@
             opacity: 0.25;
             transition: opacity 0.35s ease;
         }
-
         .drip-card:hover {
             transform: translateY(-5px);
             box-shadow: 0 16px 35px -10px rgba(168, 85, 247, 0.22), 0 0 20px -5px rgba(0, 255, 204, 0.12);
         }
-
         .drip-card:hover::before {
             opacity: 1;
         }
-
-        /* Text Gradients */
         .text-drip-gradient {
             background: linear-gradient(135deg, #ffffff 15%, #a855f7 65%, #00ffcc 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
-
-        /* Buttons & Badges */
         .btn-drip-primary {
             background: linear-gradient(135deg, #a855f7 0%, #7e22ce 100%);
             color: #ffffff;
@@ -124,25 +109,21 @@
             transition: all 0.3s ease;
             box-shadow: 0 4px 18px rgba(168, 85, 247, 0.35);
         }
-
         .btn-drip-primary:hover {
             background: linear-gradient(135deg, #c084fc 0%, #9333ea 100%);
             box-shadow: 0 6px 24px rgba(168, 85, 247, 0.55), 0 0 12px rgba(0, 255, 204, 0.35);
             transform: translateY(-2px);
         }
-
         .badge-original {
             background: rgba(0, 255, 204, 0.12);
             border: 1px solid rgba(0, 255, 204, 0.5);
             color: #00ffcc;
         }
-
         .badge-aaa {
             background: rgba(168, 85, 247, 0.15);
             border: 1px solid rgba(168, 85, 247, 0.5);
             color: #c084fc;
         }
-
         .drip-divider {
             background-image: radial-gradient(circle at 50% 0, rgba(168, 85, 247, 0.12), transparent 70%);
         }
@@ -161,8 +142,9 @@
     <header class="sticky top-0 z-40 drip-glass">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-16 sm:h-20">
-                <!-- LOGO EQUILIBRADO -->
-                <div class="flex items-center gap-2.5 cursor-pointer" onclick="switchTab('home')">
+                
+                <!-- LOGO CON ACCESO SECRETO ADMIN (Triple clic rápido) -->
+                <div class="flex items-center gap-2.5 cursor-pointer select-none" onclick="handleLogoClick()">
                     <div class="w-9 h-9 border border-drip-purple bg-black rounded flex items-center justify-center text-drip-cyan font-gothic text-2xl shadow-[0_0_10px_rgba(168,85,247,0.4)]">
                         O
                     </div>
@@ -184,12 +166,8 @@
                     <a href="javascript:void(0)" onclick="switchTab('catalog'); setCategory('Bandoleros')" class="text-slate-300 hover:text-drip-cyan transition-colors">Bandoleros</a>
                 </nav>
 
-                <!-- HEADER ACTIONS -->
+                <!-- HEADER ACTIONS (SIN BOTÓN VISIBLE DE ADMIN) -->
                 <div class="flex items-center gap-3 sm:gap-4">
-                    <button onclick="openAdminModal()" class="text-slate-400 hover:text-drip-purple transition-colors text-[10px] sm:text-xs flex items-center gap-1.5 border border-drip-border hover:border-drip-purple/50 px-2.5 py-1.5 rounded bg-drip-surface/60 font-montserrat font-bold uppercase tracking-wider">
-                        <i class="fa-solid fa-lock text-[10px] text-drip-cyan"></i> <span class="hidden sm:inline">Admin</span>
-                    </button>
-
                     <button onclick="toggleCartDrawer()" class="relative p-2 text-slate-200 hover:text-drip-cyan transition-colors">
                         <i class="fa-solid fa-bag-shopping text-lg text-drip-purple"></i>
                         <span id="cart-counter" class="absolute -top-1 -right-1 bg-drip-cyan text-black font-montserrat font-black text-[9px] rounded-full h-4.5 w-4.5 flex items-center justify-center border border-black">0</span>
@@ -218,7 +196,6 @@
         
         <!-- INICIO / HERO -->
         <section id="tab-home" class="block">
-            <!-- HERO PROPORCIONADO -->
             <div class="relative py-16 sm:py-24 px-4 border-b border-drip-border overflow-hidden drip-divider flex items-center justify-center">
                 <div class="absolute -top-24 left-1/4 w-80 h-80 bg-drip-purple/15 rounded-full blur-[100px] pointer-events-none"></div>
                 <div class="absolute bottom-0 right-1/4 w-80 h-80 bg-drip-cyan/10 rounded-full blur-[100px] pointer-events-none"></div>
@@ -346,6 +323,11 @@
 
     </main>
 
+    <!-- FOOTER -->
+    <footer class="bg-black border-t border-drip-border py-8 text-center text-xs text-slate-500 font-sans">
+        <p>© 2026 OUTLAW CAP VENEZUELA. High-End Streetwear & Drip Culture.</p>
+    </footer>
+
     <!-- BOTÓN FLOTANTE WHATSAPP -->
     <a href="https://wa.me/584122013474?text=Hola%20Outlaw%20Cap,%20quiero%20hacer%20una%20consulta." target="_blank" class="fixed bottom-5 right-5 z-50 w-13 h-13 sm:w-14 sm:h-14 bg-black border-2 border-drip-cyan text-drip-cyan rounded-full flex items-center justify-center hover:bg-drip-cyan hover:text-black transition-all shadow-[0_0_18px_rgba(0,255,204,0.4)] group">
         <i class="fa-brands fa-whatsapp text-2xl sm:text-3xl group-hover:scale-110 transition-transform"></i>
@@ -407,7 +389,7 @@
         </div>
     </div>
 
-    <!-- MODAL ADMIN -->
+    <!-- MODAL ADMIN (SECRETO Y BLINDADO) -->
     <div id="admin-modal" class="fixed inset-0 z-50 bg-black/95 backdrop-blur-md hidden items-center justify-center p-4 overflow-y-auto">
         <div class="bg-drip-bg border border-drip-purple/50 rounded-lg max-w-3xl w-full p-5 sm:p-7 relative shadow-[0_0_35px_rgba(168,85,247,0.35)] my-6">
             <button onclick="closeAdminModal()" class="absolute top-5 right-5 text-slate-400 hover:text-white">
@@ -420,16 +402,25 @@
                     <i class="fa-solid fa-shield-halved"></i>
                 </div>
                 <h3 class="font-syne text-xl font-bold uppercase text-white mb-1">Acceso Administrador</h3>
-                <p class="text-xs text-slate-400 mb-5 font-sans">Ingresa la contraseña para gestionar la tienda.</p>
-                <input type="password" id="admin-pass" placeholder="Contraseña (outlaw123)" class="w-full bg-drip-surface border border-drip-border text-xs text-white p-3 text-center rounded mb-3 focus:outline-none focus:border-drip-cyan">
+                <p class="text-xs text-slate-400 mb-5 font-sans">Ingresa tu clave de seguridad.</p>
+                <input type="password" id="admin-pass" placeholder="Contraseña" class="w-full bg-drip-surface border border-drip-border text-xs text-white p-3 text-center rounded mb-3 focus:outline-none focus:border-drip-cyan">
                 <button onclick="verifyAdmin()" class="w-full py-3 btn-drip-primary text-xs font-montserrat uppercase tracking-widest rounded">Entrar</button>
             </div>
 
             <!-- Panel Admin -->
             <div id="admin-panel" class="hidden space-y-5">
                 <div class="flex justify-between items-center border-b border-drip-border pb-3">
-                    <h3 class="font-syne text-xl font-bold text-drip-cyan uppercase">Gestión de Inventario & Banner</h3>
+                    <h3 class="font-syne text-xl font-bold text-drip-cyan uppercase">Gestión de Tienda & Seguridad</h3>
                     <button onclick="logoutAdmin()" class="text-xs text-slate-400 hover:text-red-400 font-montserrat uppercase tracking-wider">Cerrar Sesión</button>
+                </div>
+
+                <!-- Cambiar Contraseña -->
+                <div class="bg-drip-surface/70 p-3.5 border border-drip-border rounded space-y-2">
+                    <h4 class="text-xs font-montserrat font-extrabold uppercase tracking-wider text-drip-purple">Cambiar Contraseña de Administrador</h4>
+                    <div class="flex gap-2">
+                        <input type="password" id="new-admin-pass" placeholder="Nueva contraseña..." class="w-full bg-drip-bg border border-drip-border text-xs text-white p-2.5 rounded focus:outline-none focus:border-drip-cyan">
+                        <button onclick="changeAdminPassword()" class="px-4 bg-drip-purple hover:bg-drip-purpleGlow text-white text-xs font-montserrat uppercase font-bold rounded">Actualizar Clave</button>
+                    </div>
                 </div>
 
                 <!-- Modificar Banner -->
@@ -489,17 +480,16 @@
                 <!-- Tabla Inventario -->
                 <div class="bg-drip-surface/70 p-3.5 border border-drip-border rounded overflow-x-auto">
                     <h4 class="text-xs font-montserrat font-extrabold uppercase tracking-wider text-drip-purple mb-3">Productos en Stock</h4>
-                    <table class="w-full text-left text-xs text-slate-300">
-                        <thead class="bg-drip-bg text-slate-400 uppercase font-montserrat text-[9px]">
-                            <tr>
-                                <th class="p-2">Producto</th>
-                                <th class="p-2">Categoría</th>
-                                <th class="p-2">Badge</th>
-                                <th class="p-2">Precio</th>
-                                <th class="p-2 text-right">Acciones</th>
+                    <table class="w-full text-left text-xs">
+                        <thead>
+                            <tr class="border-b border-drip-border text-slate-400 font-montserrat uppercase text-[10px]">
+                                <th class="py-2 px-2">Producto</th>
+                                <th class="py-2 px-2">Categoría</th>
+                                <th class="py-2 px-2">Precio</th>
+                                <th class="py-2 px-2 text-right">Acciones</th>
                             </tr>
                         </thead>
-                        <tbody id="admin-table-body" class="divide-y divide-drip-border">
+                        <tbody id="admin-product-table">
                             <!-- Dinámico -->
                         </tbody>
                     </table>
@@ -508,179 +498,115 @@
         </div>
     </div>
 
-    <!-- FOOTER -->
-    <footer class="bg-black border-t border-drip-purple/30 py-10 mt-16 text-xs text-slate-500">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-3">
-            <span class="font-syne text-xl font-extrabold text-white tracking-widest block">
-                OUTLAW <span class="text-drip-cyan font-gothic text-2xl">Cap</span>
-            </span>
-            <p class="max-w-md mx-auto text-slate-400 text-[11px] font-sans">
-                Gorras Oakley & Ámbula Originales, piezas AAA seleccionadas, camisetas oversized y bandoleros en Venezuela.
-            </p>
-            <div class="pt-3 border-t border-drip-border/40 text-[9px] tracking-widest uppercase font-montserrat">
-                &copy; <span id="year"></span> OUTLAW CAP VENEZUELA. TODOS LOS DERECHOS RESERVADOS.
-            </div>
-        </div>
-    </footer>
-
-    <!-- JAVASCRIPT LOGIC -->
+    <!-- SCRIPTS -->
     <script>
-        const WHATSAPP_NUM = "584122013474";
-        const ADMIN_CODE = "outlaw123";
-        const BS_RATE = 50.00;
+        const defaultProducts = [
+            { id: 1, name: "Gorra Oakley Holbrook Original", brand: "Oakley", category: "Gorras Originales", quality: "Original", price: 45.00, image: "https://images.unsplash.com/photo-1588850561407-ed78c282e89b?auto=format&fit=crop&w=600&q=80" },
+            { id: 2, name: "Gorra Ámbula Classic VZLA", brand: "Ámbula", category: "Gorras Originales", quality: "Original", price: 40.00, image: "https://images.unsplash.com/photo-1534215754734-18e55d134346?auto=format&fit=crop&w=600&q=80" },
+            { id: 3, name: "Gorra Jordan Jumpman AAA", brand: "Jordan", category: "Gorras AAA", quality: "AAA", price: 25.00, image: "https://images.unsplash.com/photo-1575428652377-a2d80e2277fc?auto=format&fit=crop&w=600&q=80" },
+            { id: 4, name: "Gorra Nike Club Metal AAA", brand: "Nike", category: "Gorras AAA", quality: "AAA", price: 22.00, image: "https://images.unsplash.com/photo-1521369909029-2afed882baee?auto=format&fit=crop&w=600&q=80" },
+            { id: 5, name: "Gorra New Era Yankees AAA", brand: "New Era", category: "Gorras AAA", quality: "AAA", price: 25.00, image: "https://images.unsplash.com/photo-1556306535-0f09a537f0a3?auto=format&fit=crop&w=600&q=80" },
+            { id: 6, name: "Camiseta Oversized Outlaw Drip", brand: "Outlaw", category: "Camisetas", quality: "Original", price: 30.00, image: "https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&w=600&q=80" },
+            { id: 7, name: "Bandolero Táctico Streetwear", brand: "Outlaw", category: "Bandoleros", quality: "Original", price: 28.00, image: "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=600&q=80" }
+        ];
 
-        let appState = {
-            activeCategory: 'Todas',
-            cart: [],
-            products: [
-                {
-                    id: "p1",
-                    name: "Gorra Oakley Metal Icon Cap",
-                    brand: "Oakley",
-                    category: "Gorras Originales",
-                    quality: "Original",
-                    price: 38.00,
-                    image: "https://images.unsplash.com/photo-1588850561407-ed78c282e89b?auto=format&fit=crop&w=800&q=80",
-                    description: "Gorra Oakley 100% Original con placa metálica frontal cromada. Ajuste y estructura premium."
-                },
-                {
-                    id: "p2",
-                    name: "Gorra Ámbula Distressed Urban",
-                    brand: "Ámbula",
-                    category: "Gorras Originales",
-                    quality: "Original",
-                    price: 34.00,
-                    image: "https://images.unsplash.com/photo-1575428652377-a2d80e2277fc?auto=format&fit=crop&w=800&q=80",
-                    description: "Modelo Ámbula 100% Original con terminados desgastados de alta precisión y costuras reforzadas."
-                },
-                {
-                    id: "p3",
-                    name: "Gorra Jordan Pro Jumpman Drip",
-                    brand: "Jordan",
-                    category: "Gorras AAA",
-                    quality: "AAA",
-                    price: 22.00,
-                    image: "https://images.unsplash.com/photo-1534215754734-18e55d13e346?auto=format&fit=crop&w=800&q=80",
-                    description: "Réplica AAA certificada de máxima fidelidad con bordado frontal Jumpman tridimensional."
-                },
-                {
-                    id: "p4",
-                    name: "Gorra Adidas Trefoil Classic",
-                    brand: "Adidas",
-                    category: "Gorras AAA",
-                    quality: "AAA",
-                    price: 20.00,
-                    image: "https://images.unsplash.com/photo-1521369984125-650a3a81072e?auto=format&fit=crop&w=800&q=80",
-                    description: "Modelo estructurado con bordado trébol frontal y hebilla trasera metálica."
-                },
-                {
-                    id: "p5",
-                    name: "Gorra Nike Heritage Metallic",
-                    brand: "Nike",
-                    category: "Gorras AAA",
-                    quality: "AAA",
-                    price: 20.00,
-                    image: "https://images.unsplash.com/photo-1618354691373-d851c5c3a990?auto=format&fit=crop&w=800&q=80",
-                    description: "Diseño urbano en poliéster de alta densidad con swoosh metálico lateral."
-                },
-                {
-                    id: "p6",
-                    name: "Gorra New Era 59FIFTY Fitted",
-                    brand: "New Era",
-                    category: "Gorras AAA",
-                    quality: "AAA",
-                    price: 24.00,
-                    image: "https://images.unsplash.com/photo-1576871337622-98d48d1cf531?auto=format&fit=crop&w=800&q=80",
-                    description: "Estilo cerrado de visera plana de calidad superior AAA."
-                },
-                {
-                    id: "p7",
-                    name: "Camiseta Outlaw Heavyweight Oversized",
-                    brand: "Outlaw",
-                    category: "Camisetas",
-                    quality: "Original",
-                    price: 26.00,
-                    image: "https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&w=800&q=80",
-                    description: "Algodón pesado de 240g con corte holgado urbano y serigrafía de alto relieve."
-                },
-                {
-                    id: "p8",
-                    name: "Bandolero Shoulder Bag Stealth",
-                    brand: "Outlaw",
-                    category: "Bandoleros",
-                    quality: "Original",
-                    price: 25.00,
-                    image: "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=800&q=80",
-                    description: "Bolsito de hombro impermeable con cierres sellados y correa regulable."
-                }
-            ]
-        };
+        let products = JSON.parse(localStorage.getItem('outlaw_products')) || defaultProducts;
+        let cart = JSON.parse(localStorage.getItem('outlaw_cart')) || [];
+        let currentCategory = 'Todas';
+        let bannerText = localStorage.getItem('outlaw_banner') || "🔥 ENVÍOS ASEGURADOS A TODA VENEZUELA | DRIP STREETWEAR 2026 🔥";
 
-        window.onload = function() {
-            document.getElementById('year').innerText = new Date().getFullYear();
-            renderHomeGrid();
-            renderCatalogGrid();
-            renderAdminTable();
-        };
+        let logoClicks = 0;
+        let logoTimer = null;
+        function handleLogoClick() {
+            logoClicks++;
+            if (logoClicks === 1) {
+                logoTimer = setTimeout(() => {
+                    if (logoClicks < 3) {
+                        switchTab('home');
+                    }
+                    logoClicks = 0;
+                }, 400);
+            } else if (logoClicks === 3) {
+                clearTimeout(logoTimer);
+                logoClicks = 0;
+                openAdminModal();
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            document.getElementById('banner-text').innerText = bannerText;
+            document.getElementById('admin-banner-input').value = bannerText;
+            renderProducts();
+            updateCartUI();
+        });
 
         function switchTab(tabId) {
             document.getElementById('tab-home').classList.add('hidden');
             document.getElementById('tab-catalog').classList.add('hidden');
-            document.getElementById(`tab-${tabId}`).classList.remove('hidden');
+            document.getElementById('tab-' + tabId).classList.remove('hidden');
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
         function toggleMobileMenu() {
-            document.getElementById('mobile-menu').classList.toggle('hidden');
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
         }
 
-        function renderHomeGrid() {
-            const container = document.getElementById('home-featured-grid');
-            const featured = appState.products.slice(0, 6);
-            container.innerHTML = featured.map(p => createProductCardHTML(p)).join('');
-        }
+        function renderProducts() {
+            const searchQuery = document.getElementById('catalog-search') ? document.getElementById('catalog-search').value.toLowerCase() : '';
+            const selectedBrand = document.getElementById('brand-select') ? document.getElementById('brand-select').value : 'ALL';
 
-        function renderCatalogGrid() {
-            const container = document.getElementById('catalog-grid');
-            const searchVal = document.getElementById('catalog-search')?.value.toLowerCase() || '';
-            const brandVal = document.getElementById('brand-select')?.value || 'ALL';
-
-            const filtered = appState.products.filter(p => {
-                const matchesCat = appState.activeCategory === 'Todas' || p.category === appState.activeCategory;
-                const matchesSearch = p.name.toLowerCase().includes(searchVal) || p.brand.toLowerCase().includes(searchVal);
-                const matchesBrand = brandVal === 'ALL' || p.brand === brandVal;
-                return matchesCat && matchesSearch && matchesBrand;
+            const filtered = products.filter(p => {
+                const matchesCategory = currentCategory === 'Todas' || p.category === currentCategory;
+                const matchesBrand = selectedBrand === 'ALL' || p.brand === selectedBrand;
+                const matchesSearch = p.name.toLowerCase().includes(searchQuery) || p.brand.toLowerCase().includes(searchQuery);
+                return matchesCategory && matchesBrand && matchesSearch;
             });
 
-            if (filtered.length === 0) {
-                container.innerHTML = `<div class="col-span-full text-center py-12 text-slate-500 font-montserrat font-bold text-xs uppercase tracking-widest">No hay piezas encontradas con estos filtros.</div>`;
-            } else {
-                container.innerHTML = filtered.map(p => createProductCardHTML(p)).join('');
+            const homeGrid = document.getElementById('home-featured-grid');
+            if (homeGrid) {
+                homeGrid.innerHTML = products.slice(0, 3).map(p => createProductCard(p)).join('');
             }
+
+            const catalogGrid = document.getElementById('catalog-grid');
+            if (catalogGrid) {
+                if (filtered.length === 0) {
+                    catalogGrid.innerHTML = `<div class="col-span-full text-center py-12 text-slate-500 font-sans">No se encontraron productos con estos filtros.</div>`;
+                } else {
+                    catalogGrid.innerHTML = filtered.map(p => createProductCard(p)).join('');
+                }
+            }
+
+            if (typeof renderAdminTable === 'function') renderAdminTable();
         }
 
-        function createProductCardHTML(product) {
-            const isOriginal = product.quality === 'Original';
-            const badgeClass = isOriginal ? 'badge-original' : 'badge-aaa';
-            const badgeText = isOriginal ? 'ORIGINAL' : 'CALIDAD AAA';
+        function createProductCard(p) {
+            const badgeClass = p.quality === 'Original' ? 'badge-original' : 'badge-aaa';
+            const badgeText = p.quality === 'Original' ? '100% ORIGINAL' : 'CALIDAD AAA';
+            const bsPrice = (p.price * 65.5).toFixed(2);
 
             return `
                 <div class="drip-card rounded overflow-hidden flex flex-col justify-between group">
-                    <div class="relative aspect-square overflow-hidden bg-black/60 cursor-pointer" onclick="openProductModal('${product.id}')">
-                        <img src="${product.image}" alt="${product.name}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-90 group-hover:opacity-100">
-                        <span class="absolute top-2.5 left-2.5 px-2.5 py-0.5 rounded text-[8px] font-montserrat font-black tracking-widest uppercase ${badgeClass}">
-                            ${badgeText}
-                        </span>
-                    </div>
-                    <div class="p-4 flex-grow flex flex-col justify-between space-y-3">
-                        <div>
-                            <span class="text-[9px] font-montserrat font-black uppercase tracking-widest text-drip-purple">${product.brand}</span>
-                            <h3 class="font-syne text-base font-bold text-white leading-snug group-hover:text-drip-cyan transition-colors mt-0.5">${product.name}</h3>
+                    <div class="relative overflow-hidden aspect-square bg-black/40 cursor-pointer" onclick="openProductModal(${p.id})">
+                        <img src="${p.image}" alt="${p.name}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute top-3 left-3">
+                            <span class="text-[9px] font-montserrat font-black uppercase px-2 py-1 rounded ${badgeClass}">
+                                ${badgeText}
+                            </span>
                         </div>
-                        <div class="flex justify-between items-center pt-2.5 border-t border-drip-border/60">
-                            <span class="font-syne text-xl font-extrabold text-white">$${product.price.toFixed(2)}</span>
-                            <button onclick="addToCart('${product.id}')" class="px-3.5 py-1.5 border border-drip-purple/50 hover:border-drip-cyan text-slate-200 hover:text-drip-cyan font-montserrat font-bold text-[9px] uppercase tracking-widest rounded transition-all bg-drip-surface/60">
-                                + Agregar
+                    </div>
+                    <div class="p-4 space-y-2 flex flex-col flex-grow justify-between">
+                        <div>
+                            <span class="text-[10px] font-montserrat font-bold text-drip-cyan uppercase tracking-wider">${p.brand}</span>
+                            <h3 class="font-syne font-bold text-white text-sm line-clamp-1 mt-0.5">${p.name}</h3>
+                        </div>
+                        <div class="flex items-center justify-between pt-2 border-t border-drip-border">
+                            <div>
+                                <span class="text-white font-syne font-extrabold text-base">$${p.price.toFixed(2)}</span>
+                                <span class="block text-[9px] text-slate-500 font-sans">Ref: ~${bsPrice} Bs</span>
+                            </div>
+                            <button onclick="addToCart(${p.id})" class="px-3 py-2 btn-drip-primary text-[10px] font-montserrat uppercase rounded flex items-center gap-1.5">
+                                <i class="fa-solid fa-cart-plus text-xs"></i> Comprar
                             </button>
                         </div>
                     </div>
@@ -689,150 +615,47 @@
         }
 
         function setCategory(cat) {
-            appState.activeCategory = cat;
-            document.querySelectorAll('#category-tabs .cat-btn').forEach(btn => {
-                if(btn.innerText.includes(cat) || (cat === 'Todas' && btn.innerText === 'Todas')) {
-                    btn.className = "cat-btn active px-3.5 py-2 border border-drip-cyan bg-drip-cyan text-black rounded font-extrabold";
+            currentCategory = cat;
+            document.querySelectorAll('.cat-btn').forEach(btn => {
+                if (btn.innerText.includes(cat) || (cat === 'Todas' && btn.innerText === 'Todas')) {
+                    btn.classList.add('border-drip-cyan', 'bg-drip-cyan', 'text-black', 'font-extrabold');
+                    btn.classList.remove('border-drip-border', 'text-slate-300');
                 } else {
-                    btn.className = "cat-btn px-3.5 py-2 border border-drip-border text-slate-300 hover:border-drip-purple transition-colors rounded";
+                    btn.classList.remove('border-drip-cyan', 'bg-drip-cyan', 'text-black', 'font-extrabold');
+                    btn.classList.add('border-drip-border', 'text-slate-300');
                 }
             });
-            applyFilters();
+            renderProducts();
+            switchTab('catalog');
         }
 
         function applyFilters() {
-            renderCatalogGrid();
+            renderProducts();
         }
 
-        /* CARRITO Y WHATSAPP */
-        function addToCart(prodId) {
-            const product = appState.products.find(p => p.id === prodId);
-            if (!product) return;
-
-            const existing = appState.cart.find(item => item.id === prodId);
-            if (existing) {
-                existing.qty += 1;
-            } else {
-                appState.cart.push({ ...product, qty: 1 });
-            }
-            updateCartUI();
-            toggleCartDrawer(true);
-        }
-
-        function updateCartUI() {
-            const counter = document.getElementById('cart-counter');
-            const totalQty = appState.cart.reduce((sum, i) => sum + i.qty, 0);
-            counter.innerText = totalQty;
-
-            const list = document.getElementById('cart-list');
-            if (appState.cart.length === 0) {
-                list.innerHTML = `<p class="text-center text-slate-500 text-xs py-8 font-montserrat uppercase tracking-widest">Tu bolsa se encuentra vacía.</p>`;
-            } else {
-                list.innerHTML = appState.cart.map(item => `
-                    <div class="flex justify-between items-center bg-drip-surface p-2.5 rounded border border-drip-border">
-                        <div class="flex items-center gap-2.5">
-                            <img src="${item.image}" class="w-10 h-10 object-cover rounded border border-drip-border">
-                            <div>
-                                <h4 class="font-syne text-xs font-bold text-white">${item.name}</h4>
-                                <span class="text-[9px] text-drip-purple font-montserrat font-bold">$${item.price.toFixed(2)} USD</span>
-                            </div>
-                        </div>
-                        <div class="flex items-center gap-1.5">
-                            <button onclick="changeQty('${item.id}', -1)" class="w-5 h-5 border border-drip-border rounded flex items-center justify-center text-xs text-slate-300 hover:border-drip-purple">-</button>
-                            <span class="text-xs font-bold font-sans text-white px-1">${item.qty}</span>
-                            <button onclick="changeQty('${item.id}', 1)" class="w-5 h-5 border border-drip-border rounded flex items-center justify-center text-xs text-slate-300 hover:border-drip-purple">+</button>
-                        </div>
-                    </div>
-                `).join('');
-            }
-
-            const totalUSD = appState.cart.reduce((sum, i) => sum + (i.price * i.qty), 0);
-            const totalBS = totalUSD * BS_RATE;
-            document.getElementById('cart-total-usd').innerText = `$${totalUSD.toFixed(2)}`;
-            document.getElementById('cart-total-bs').innerText = `${totalBS.toLocaleString('es-VE', {minimumFractionDigits: 2})} Bs`;
-        }
-
-        function changeQty(id, delta) {
-            const item = appState.cart.find(i => i.id === id);
-            if (!item) return;
-            item.qty += delta;
-            if (item.qty <= 0) {
-                appState.cart = appState.cart.filter(i => i.id !== id);
-            }
-            updateCartUI();
-        }
-
-        function toggleCartDrawer(forceOpen = false) {
-            const drawer = document.getElementById('cart-drawer');
-            if (forceOpen) {
-                drawer.classList.remove('hidden');
-                drawer.classList.add('flex');
-            } else {
-                drawer.classList.toggle('hidden');
-                drawer.classList.toggle('flex');
-            }
-        }
-
-        function sendWhatsAppOrder() {
-            if (appState.cart.length === 0) {
-                alert("Agrega al menos una pieza a la bolsa.");
-                return;
-            }
-            const name = document.getElementById('cust-name').value.trim();
-            const city = document.getElementById('cust-city').value.trim();
-
-            if (!name || !city) {
-                alert("Ingresa tu Nombre y Ciudad para coordinar la entrega.");
-                return;
-            }
-
-            let msg = `*⚡ PEDIDO OUTLAW CAP VENEZUELA ⚡*\n`;
-            msg += `==================================\n`;
-            msg += `*Cliente:* ${name}\n`;
-            msg += `*Ubicación:* ${city}\n\n`;
-            msg += `*DETALLE DE PIEZAS:*\n`;
-
-            appState.cart.forEach((item, index) => {
-                msg += `${index + 1}. ${item.name} [${item.quality}]\n   • Cantidad: ${item.qty} x $${item.price.toFixed(2)} USD\n`;
-            });
-
-            const totalUSD = appState.cart.reduce((sum, i) => sum + (i.price * i.qty), 0);
-            const totalBS = totalUSD * BS_RATE;
-
-            msg += `\n*TOTAL USD:* $${totalUSD.toFixed(2)}\n`;
-            msg += `*REF ESTIMADA BS:* ${totalBS.toLocaleString('es-VE', {minimumFractionDigits: 2})} Bs.\n`;
-            msg += `==================================\n`;
-            msg += `Quedo atento a los datos para efectuar el pago y envío.`;
-
-            const encoded = encodeURIComponent(msg);
-            window.open(`https://wa.me/${WHATSAPP_NUM}?text=${encoded}`, '_blank');
-        }
-
-        /* MODAL PRODUCTO */
         function openProductModal(id) {
-            const product = appState.products.find(p => p.id === id);
-            if (!product) return;
-            const body = document.getElementById('product-modal-body');
-            const isOriginal = product.quality === 'Original';
-            const badgeClass = isOriginal ? 'badge-original' : 'badge-aaa';
+            const p = products.find(prod => prod.id === id);
+            if (!p) return;
+            const modalBody = document.getElementById('product-modal-body');
+            const badgeClass = p.quality === 'Original' ? 'badge-original' : 'badge-aaa';
+            const badgeText = p.quality === 'Original' ? '100% ORIGINAL' : 'CALIDAD AAA';
 
-            body.innerHTML = `
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
-                    <img src="${product.image}" class="w-full aspect-square object-cover rounded border border-drip-border">
-                    <div class="space-y-3 flex flex-col justify-between">
+            modalBody.innerHTML = `
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 items-center">
+                    <div class="aspect-square rounded overflow-hidden bg-black/50 border border-drip-border">
+                        <img src="${p.image}" alt="${p.name}" class="w-full h-full object-cover">
+                    </div>
+                    <div class="space-y-3">
                         <div>
-                            <span class="px-2 py-0.5 rounded text-[8px] font-montserrat font-black tracking-widest uppercase ${badgeClass}">
-                                ${product.quality}
-                            </span>
-                            <h3 class="font-syne text-xl font-bold text-white mt-2">${product.name}</h3>
-                            <p class="text-xs text-slate-400 font-sans leading-relaxed mt-2">${product.description}</p>
+                            <span class="text-[10px] font-montserrat font-bold uppercase px-2 py-0.5 rounded ${badgeClass}">${badgeText}</span>
+                            <span class="block text-[10px] font-montserrat font-bold text-drip-cyan uppercase tracking-wider mt-2">${p.brand}</span>
+                            <h2 class="font-syne font-extrabold text-white text-lg mt-0.5">${p.name}</h2>
                         </div>
-                        <div class="space-y-2.5 pt-3 border-t border-drip-border">
-                            <span class="font-syne text-2xl font-extrabold text-white">$${product.price.toFixed(2)} USD</span>
-                            <button onclick="addToCart('${product.id}'); closeProductModal();" class="w-full py-3 btn-drip-primary text-xs font-montserrat uppercase tracking-widest rounded">
-                                Agregar a la Bolsa
-                            </button>
-                        </div>
+                        <p class="text-xs text-slate-400 font-sans">Pieza garantizada con acabados de alta gama y durabilidad premium para Venezuela.</p>
+                        <div class="text-xl font-syne font-extrabold text-white">$${p.price.toFixed(2)}</div>
+                        <button onclick="addToCart(${p.id}); closeProductModal(); toggleCartDrawer();" class="w-full py-3 btn-drip-primary text-xs font-montserrat uppercase font-black rounded">
+                            Agregar a la Bolsa
+                        </button>
                     </div>
                 </div>
             `;
@@ -845,7 +668,103 @@
             document.getElementById('product-modal').classList.remove('flex');
         }
 
-        /* MODAL ADMIN */
+        function toggleCartDrawer() {
+            const drawer = document.getElementById('cart-drawer');
+            drawer.classList.toggle('hidden');
+            drawer.classList.toggle('flex');
+        }
+
+        function addToCart(id) {
+            const p = products.find(prod => prod.id === id);
+            if (!p) return;
+            const existing = cart.find(item => item.id === id);
+            if (existing) {
+                existing.qty++;
+            } else {
+                cart.push({ ...p, qty: 1 });
+            }
+            saveCart();
+            updateCartUI();
+        }
+
+        function updateQuantity(id, change) {
+            const item = cart.find(i => i.id === id);
+            if (!item) return;
+            item.qty += change;
+            if (item.qty <= 0) {
+                cart = cart.filter(i => i.id !== id);
+            }
+            saveCart();
+            updateCartUI();
+        }
+
+        function saveCart() {
+            localStorage.setItem('outlaw_cart', JSON.stringify(cart));
+        }
+
+        function updateCartUI() {
+            const totalCount = cart.reduce((sum, i) => sum + i.qty, 0);
+            document.getElementById('cart-counter').innerText = totalCount;
+
+            const cartList = document.getElementById('cart-list');
+            if (cart.length === 0) {
+                cartList.innerHTML = `<p class="text-xs text-slate-500 text-center py-8">Tu bolsa está vacía.</p>`;
+                document.getElementById('cart-total-usd').innerText = "$0.00";
+                document.getElementById('cart-total-bs').innerText = "0.00 Bs";
+                return;
+            }
+
+            cartList.innerHTML = cart.map(item => `
+                <div class="flex items-center justify-between bg-drip-surface p-2.5 rounded border border-drip-border">
+                    <div class="flex items-center gap-3">
+                        <img src="${item.image}" class="w-12 h-12 object-cover rounded">
+                        <div>
+                            <h4 class="font-syne font-bold text-xs text-white line-clamp-1">${item.name}</h4>
+                            <span class="text-[10px] text-drip-cyan">$${item.price.toFixed(2)} c/u</span>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <button onclick="updateQuantity(${item.id}, -1)" class="w-6 h-6 bg-drip-border rounded text-white text-xs flex items-center justify-center hover:bg-drip-purple">-</button>
+                        <span class="text-xs font-bold text-white">${item.qty}</span>
+                        <button onclick="updateQuantity(${item.id}, 1)" class="w-6 h-6 bg-drip-border rounded text-white text-xs flex items-center justify-center hover:bg-drip-purple">+</button>
+                    </div>
+                </div>
+            `).join('');
+
+            const totalUsd = cart.reduce((sum, i) => sum + (i.price * i.qty), 0);
+            const totalBs = totalUsd * 65.5;
+            document.getElementById('cart-total-usd').innerText = `$${totalUsd.toFixed(2)}`;
+            document.getElementById('cart-total-bs').innerText = `${totalBs.toFixed(2)} Bs`;
+        }
+
+        function sendWhatsAppOrder() {
+            if (cart.length === 0) {
+                alert("Tu bolsa está vacía.");
+                return;
+            }
+            const name = document.getElementById('cust-name').value.trim();
+            const city = document.getElementById('cust-city').value.trim();
+
+            if (!name || !city) {
+                alert("Por favor ingresa tu Nombre y Ciudad para el despacho en Venezuela.");
+                return;
+            }
+
+            let msg = `🔥 *NUEVO PEDIDO - OUTLAW CAP* 🔥\n`;
+            msg += `👤 *Cliente:* ${name}\n`;
+            msg += `📍 *Ciudad/Estado:* ${city}\n\n`;
+            msg += `🛒 *Productos:* \n`;
+            cart.forEach(i => {
+                msg += `• ${i.qty}x ${i.name} ($${(i.price * i.qty).toFixed(2)})\n`;
+            });
+            const totalUsd = cart.reduce((sum, i) => sum + (i.price * i.qty), 0);
+            msg += `\n💰 *Total:* $${totalUsd.toFixed(2)} (~${(totalUsd * 65.5).toFixed(2)} Bs)\n`;
+            msg += `¡Espero confirmación para pago y envío!`;
+
+            const url = `https://wa.me/584122013474?text=${encodeURIComponent(msg)}`;
+            window.open(url, '_blank');
+        }
+
         function openAdminModal() {
             document.getElementById('admin-modal').classList.remove('hidden');
             document.getElementById('admin-modal').classList.add('flex');
@@ -857,117 +776,124 @@
         }
 
         function verifyAdmin() {
-            const input = document.getElementById('admin-pass').value;
-            if (input === ADMIN_CODE) {
+            const passInput = document.getElementById('admin-pass').value;
+            const storedPass = localStorage.getItem('outlaw_admin_pass') || 'outlaw123';
+
+            if (passInput === storedPass) {
                 document.getElementById('admin-login').classList.add('hidden');
                 document.getElementById('admin-panel').classList.remove('hidden');
+                renderAdminTable();
             } else {
-                alert("Clave incorrecta.");
+                alert("Contraseña incorrecta.");
             }
         }
 
         function logoutAdmin() {
-            document.getElementById('admin-login').classList.remove('hidden');
-            document.getElementById('admin-panel').classList.add('hidden');
             document.getElementById('admin-pass').value = '';
+            document.getElementById('admin-panel').classList.add('hidden');
+            document.getElementById('admin-login').classList.remove('hidden');
+            closeAdminModal();
+        }
+
+        function changeAdminPassword() {
+            const newPass = document.getElementById('new-admin-pass').value.trim();
+            if (!newPass) {
+                alert("Ingresa una contraseña válida.");
+                return;
+            }
+            localStorage.setItem('outlaw_admin_pass', newPass);
+            alert("¡Contraseña actualizada con éxito!");
+            document.getElementById('new-admin-pass').value = '';
         }
 
         function updateBannerText() {
-            const text = document.getElementById('admin-banner-input').value.trim();
-            if (text) {
-                document.getElementById('banner-text').innerText = text;
-                alert("Banner actualizado correctamente.");
-            }
+            const val = document.getElementById('admin-banner-input').value.trim();
+            if (!val) return;
+            bannerText = val;
+            localStorage.setItem('outlaw_banner', bannerText);
+            document.getElementById('banner-text').innerText = bannerText;
+            alert("¡Banner actualizado con éxito!");
         }
 
-        function editProduct(id) {
-            const prod = appState.products.find(p => p.id === id);
-            if (!prod) return;
-
-            document.getElementById('p-edit-id').value = prod.id;
-            document.getElementById('p-name').value = prod.name;
-            document.getElementById('p-brand').value = prod.brand;
-            document.getElementById('p-category').value = prod.category;
-            document.getElementById('p-quality').value = prod.quality;
-            document.getElementById('p-price').value = prod.price;
-            document.getElementById('p-image').value = prod.image;
-
-            document.getElementById('admin-form-title').innerText = "Editar Producto";
-            document.getElementById('admin-submit-btn').innerText = "Actualizar Producto";
-        }
-
-        function resetAdminForm() {
-            document.getElementById('p-edit-id').value = "";
-            document.getElementById('p-name').value = "";
-            document.getElementById('p-price').value = "";
-            document.getElementById('p-image').value = "";
-            document.getElementById('admin-form-title').innerText = "Agregar Producto";
-            document.getElementById('admin-submit-btn').innerText = "Guardar Producto";
+        function renderAdminTable() {
+            const tbody = document.getElementById('admin-product-table');
+            if (!tbody) return;
+            tbody.innerHTML = products.map(p => `
+                <tr class="border-b border-drip-border/50 hover:bg-drip-surface/40">
+                    <td class="py-2.5 px-2 flex items-center gap-2">
+                        <img src="${p.image}" class="w-8 h-8 object-cover rounded">
+                        <span class="text-white font-bold line-clamp-1">${p.name}</span>
+                    </td>
+                    <td class="py-2.5 px-2 text-slate-300">${p.category}</td>
+                    <td class="py-2.5 px-2 text-drip-cyan font-bold">$${p.price.toFixed(2)}</td>
+                    <td class="py-2.5 px-2 text-right space-x-2">
+                        <button onclick="editProduct(${p.id})" class="text-drip-purple hover:underline">Editar</button>
+                        <button onclick="deleteProduct(${p.id})" class="text-red-400 hover:underline">Eliminar</button>
+                    </td>
+                </tr>
+            `).join('');
         }
 
         function handleSaveProduct(e) {
             e.preventDefault();
             const editId = document.getElementById('p-edit-id').value;
+            const name = document.getElementById('p-name').value;
+            const brand = document.getElementById('p-brand').value;
+            const category = document.getElementById('p-category').value;
+            const quality = document.getElementById('p-quality').value;
+            const price = parseFloat(document.getElementById('p-price').value);
+            const image = document.getElementById('p-image').value;
 
             if (editId) {
-                const index = appState.products.findIndex(p => p.id === editId);
-                if (index !== -1) {
-                    appState.products[index].name = document.getElementById('p-name').value;
-                    appState.products[index].brand = document.getElementById('p-brand').value;
-                    appState.products[index].category = document.getElementById('p-category').value;
-                    appState.products[index].quality = document.getElementById('p-quality').value;
-                    appState.products[index].price = parseFloat(document.getElementById('p-price').value);
-                    appState.products[index].image = document.getElementById('p-image').value;
+                const p = products.find(prod => prod.id == editId);
+                if (p) {
+                    p.name = name;
+                    p.brand = brand;
+                    p.category = category;
+                    p.quality = quality;
+                    p.price = price;
+                    p.image = image;
                 }
-                alert("Producto modificado correctamente.");
             } else {
-                const newProd = {
-                    id: "p" + Date.now(),
-                    name: document.getElementById('p-name').value,
-                    brand: document.getElementById('p-brand').value,
-                    category: document.getElementById('p-category').value,
-                    quality: document.getElementById('p-quality').value,
-                    price: parseFloat(document.getElementById('p-price').value),
-                    image: document.getElementById('p-image').value,
-                    description: "Nueva pieza agregada al inventario de Outlaw Cap Venezuela."
-                };
-                appState.products.unshift(newProd);
-                alert("Producto agregado al catálogo.");
+                const newId = products.length > 0 ? Math.max(...products.map(p => p.id)) + 1 : 1;
+                products.push({ id: newId, name, brand, category, quality, price, image });
             }
 
+            localStorage.setItem('outlaw_products', JSON.stringify(products));
             resetAdminForm();
-            renderHomeGrid();
-            renderCatalogGrid();
-            renderAdminTable();
+            renderProducts();
+            alert("¡Producto guardado exitosamente!");
+        }
+
+        function editProduct(id) {
+            const p = products.find(prod => prod.id === id);
+            if (!p) return;
+            document.getElementById('p-edit-id').value = p.id;
+            document.getElementById('p-name').value = p.name;
+            document.getElementById('p-brand').value = p.brand;
+            document.getElementById('p-category').value = p.category;
+            document.getElementById('p-quality').value = p.quality;
+            document.getElementById('p-price').value = p.price;
+            document.getElementById('p-image').value = p.image;
+            document.getElementById('admin-form-title').innerText = "Editar Producto";
+            document.getElementById('admin-submit-btn').innerText = "Actualizar Producto";
         }
 
         function deleteProduct(id) {
-            if (confirm("¿Confirmas eliminar esta pieza de la tienda?")) {
-                appState.products = appState.products.filter(p => p.id !== id);
-                renderHomeGrid();
-                renderCatalogGrid();
-                renderAdminTable();
+            if (confirm("¿Estás seguro de eliminar este producto?")) {
+                products = products.filter(p => p.id !== id);
+                localStorage.setItem('outlaw_products', JSON.stringify(products));
+                renderProducts();
             }
         }
 
-        function renderAdminTable() {
-            const body = document.getElementById('admin-table-body');
-            body.innerHTML = appState.products.map(p => `
-                <tr>
-                    <td class="p-2 font-syne font-bold text-white">${p.name}</td>
-                    <td class="p-2">${p.category}</td>
-                    <td class="p-2 font-bold ${p.quality === 'Original' ? 'text-drip-cyan' : 'text-drip-purple'}">${p.quality}</td>
-                    <td class="p-2 font-bold text-white">$${p.price.toFixed(2)}</td>
-                    <td class="p-2 text-right space-x-2">
-                        <button onclick="editProduct('${p.id}')" class="text-drip-cyan hover:underline text-xs">
-                            <i class="fa-solid fa-pen-to-square"></i>
-                        </button>
-                        <button onclick="deleteProduct('${p.id}')" class="text-red-400 hover:text-red-300 text-xs">
-                            <i class="fa-solid fa-trash"></i>
-                        </button>
-                    </td>
-                </tr>
-            `).join('');
+        function resetAdminForm() {
+            document.getElementById('p-edit-id').value = '';
+            document.getElementById('p-name').value = '';
+            document.getElementById('p-price').value = '';
+            document.getElementById('p-image').value = '';
+            document.getElementById('admin-form-title').innerText = "Agregar Producto";
+            document.getElementById('admin-submit-btn').innerText = "Guardar Producto";
         }
     </script>
 </body>
